@@ -73,6 +73,21 @@ void modifyArray(int arr[], int size) {
     }
 }
 
+// 10. Logikai függvény: első szám kisebb-e mint a második
+int isLess(int *a, int *b) {
+    return *a < *b;
+}
+
+// 11. Logikai függvény: első szám nagyobb-e mint a második
+int isGreater(int *a, int *b) {
+    return *a > *b;
+}
+
+// 12. Logikai függvény: két szám egyenlő-e
+int isEqual(int *a, int *b) {
+    return *a == *b;
+}
+
 int main() {
     int x = 10, y = 20, z = 5;
     printf("1. A változó értéke: %d\n", getValue(&x));
@@ -112,6 +127,12 @@ int main() {
     printf("9. Módosított tömb: ");
     for (int i = 0; i < 5; i++) printf("%d ", arr2[i]);
     printf("\n");
+
+    printf("10. x < y? %s\n", isLess(&x, &y) ? "IGAZ" : "HAMIS");
+
+    printf("11. x > y? %s\n", isGreater(&x, &y) ? "IGAZ" : "HAMIS");
+    
+    printf("12. x == y? %s\n", isEqual(&x, &y) ? "IGAZ" : "HAMIS");
 
     return 0;
 }
