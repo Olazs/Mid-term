@@ -115,7 +115,7 @@ int countDivisible(int arr16[], int size, int A) {
     return count;
 }
 
-// 17. Melyik a nagyobb pointerekkel
+// 17. Logikai függvény: Melyik a nagyobb pointerekkel
 int isBiggerWithPointers(int *a, int *b) {
     // Ellenőrizzük, hogy melyik a nagyobb szám és azt adjuk vissza
     if (*a > *b) {
@@ -126,7 +126,7 @@ int isBiggerWithPointers(int *a, int *b) {
     }
 }
 
-// 18. Melyik a kissebb pointerekkel
+// 18. Logikai függvény: Melyik a kissebb pointerekkel
 int isSmallerWithPointers(int *a, int *b) {
     if (*a < *b) {
         return *a;
@@ -135,6 +135,13 @@ int isSmallerWithPointers(int *a, int *b) {
         return *b;
     }
 }
+
+// 19. Negyzetre emeles pointerekkel
+float toSquare(float *num) {
+    // Visszaadjuk a szám négyzetét
+    return (*num) * (*num);
+}
+
 int main() {
     int x = 10, y = 20, z = 5;
     printf("1. A változó értéke: %d\n", getValue(&x));
@@ -200,6 +207,13 @@ int main() {
     int x18 = 7; int y18 = 6;
     int *px18 = &x18, *py18 = &y18;
     printf("18. A kissebb szám: %d\n", isSmallerWithPointers(px18, py18));
+
+    //19:
+    float x19=3.5;
+    float *px19=&x19;
+    printf("19. A szam negyzete: %.2f\n", toSquare(px19));
+
+
 
     return 0;
 }
