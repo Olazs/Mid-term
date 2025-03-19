@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <tgmath.h>
 #include <time.h>
 
 // 1. Függvény, amely visszatér a paraméterként kapott cím értékével
@@ -88,6 +89,21 @@ int isEqual(int *a, int *b) {
     return *a == *b;
 }
 
+// 13. Logikai függvény: lebegőpontos számok összehasonlítása
+int isFloatGreater(float *a, float *b) {
+    return *a > *b;
+}
+
+// 14. Logikai függvény: lebegőpontos számok közel azonosak-e (0.01 tűréshatár)
+int isFloatAlmostEqual(float *a, float *b) {
+    return (fabs(*a - *b) < 0.01);
+}
+
+// 15. Logikai függvény: két egész szám különbsége nagyobb-e mint 10
+int isDifferenceGreaterThanTen(int *a, int *b) {
+    return abs(*a - *b) > 10;
+}
+
 int main() {
     int x = 10, y = 20, z = 5;
     printf("1. A változó értéke: %d\n", getValue(&x));
@@ -131,8 +147,14 @@ int main() {
     printf("10. x < y? %s\n", isLess(&x, &y) ? "IGAZ" : "HAMIS");
 
     printf("11. x > y? %s\n", isGreater(&x, &y) ? "IGAZ" : "HAMIS");
-    
+
     printf("12. x == y? %s\n", isEqual(&x, &y) ? "IGAZ" : "HAMIS");
+
+    printf("13. a > b? %s\n", isFloatGreater(&a, &b) ? "IGAZ" : "HAMIS");
+
+    printf("14. a ~ b? %s\n", isFloatAlmostEqual(&a, &b) ? "IGAZ" : "HAMIS");
+
+    printf("15. x - y > 10? %s\n", isDifferenceGreaterThanTen(&x, &y) ? "IGAZ" : "HAMIS");
 
     return 0;
 }
