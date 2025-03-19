@@ -104,6 +104,17 @@ int isDifferenceGreaterThanTen(int *a, int *b) {
     return abs(*a - *b) > 10;
 }
 
+// 16. Maradék nélkül osztható számok számlálása egy tömbben
+int countDivisible(int arr16[], int size, int A) {
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr16[i] % A == 0) {
+            count++;
+        }
+    }
+    return count;
+}
+
 int main() {
     int x = 10, y = 20, z = 5;
     printf("1. A változó értéke: %d\n", getValue(&x));
@@ -155,6 +166,10 @@ int main() {
     printf("14. a ~ b? %s\n", isFloatAlmostEqual(&a, &b) ? "IGAZ" : "HAMIS");
 
     printf("15. x - y > 10? %s\n", isDifferenceGreaterThanTen(&x, &y) ? "IGAZ" : "HAMIS");
+
+    //16:
+    int arr16[] = {3, 1, 4, 1, 5, 9, 2, 6};
+    printf("16. Maradék nélkül osztható számok (2-vel): %d\n", countDivisible(arr16, 8, 2));
 
     return 0;
 }
