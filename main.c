@@ -115,6 +115,26 @@ int countDivisible(int arr16[], int size, int A) {
     return count;
 }
 
+// 17. Melyik a nagyobb pointerekkel
+int isBiggerWithPointers(int *a, int *b) {
+    // Ellenőrizzük, hogy melyik a nagyobb szám és azt adjuk vissza
+    if (*a > *b) {
+        return *a;
+    }
+    else {
+        return *b;
+    }
+}
+
+// 18. Melyik a kissebb pointerekkel
+int isSmallerWithPointers(int *a, int *b) {
+    if (*a < *b) {
+        return *a;
+    }
+    else {
+        return *b;
+    }
+}
 int main() {
     int x = 10, y = 20, z = 5;
     printf("1. A változó értéke: %d\n", getValue(&x));
@@ -170,6 +190,16 @@ int main() {
     //16:
     int arr16[] = {3, 1, 4, 1, 5, 9, 2, 6};
     printf("16. Maradék nélkül osztható számok (2-vel): %d\n", countDivisible(arr16, 8, 2));
+
+    //17:
+    int x17 = 8; int y17 = 5;
+    int *px17 = &x17, *py17 = &y17;
+    printf("17. A nagyobb szám: %d\n", isBiggerWithPointers(px17, py17));
+
+    //18:
+    int x18 = 7; int y18 = 6;
+    int *px18 = &x18, *py18 = &y18;
+    printf("18. A kissebb szám: %d\n", isSmallerWithPointers(px18, py18));
 
     return 0;
 }
