@@ -1,0 +1,3 @@
+D:/GitHub/Programming 2 course/mid-term/cmake-build-debug/CMakeFiles/mid_term.dir
+D:/GitHub/Programming 2 course/mid-term/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/GitHub/Programming 2 course/mid-term/cmake-build-debug/CMakeFiles/rebuild_cache.dir
