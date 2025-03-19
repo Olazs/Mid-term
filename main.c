@@ -144,6 +144,7 @@ float toSquare(float *num) {
 
 int main() {
     int x = 10, y = 20, z = 5;
+    float a = 5.5; float b = 6.5;
     printf("1. A változó értéke: %d\n", getValue(&x));
 
     printf("2. Swap előtt: x = %d, y = %d\n", x, y);
@@ -188,9 +189,9 @@ int main() {
 
     printf("12. x == y? %s\n", isEqual(&x, &y) ? "IGAZ" : "HAMIS");
 
-    printf("13. a > b? %s\n", isFloatGreater(&a, &b) ? "IGAZ" : "HAMIS");
+    printf("13. x > y? %s\n", isFloatGreater(&a, &b) ? "IGAZ" : "HAMIS");
 
-    printf("14. a ~ b? %s\n", isFloatAlmostEqual(&a, &b) ? "IGAZ" : "HAMIS");
+    printf("14. x ~ y? %s\n", isFloatAlmostEqual(&a, &b) ? "IGAZ" : "HAMIS");
 
     printf("15. x - y > 10? %s\n", isDifferenceGreaterThanTen(&x, &y) ? "IGAZ" : "HAMIS");
 
