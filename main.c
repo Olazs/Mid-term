@@ -250,7 +250,7 @@ int main() { //Tesztek:
 
     printf("20. Van-e egymas mellett/alatt azonos elem a matrixban? %s\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3) ? "IGAZ" : "HAMIS");
 
-    printf("21. Hány egymas mellett/alatt azonos elem a matrixban? %d\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3));
+    printf("21. Hany egymas mellett/alatt azonos elem a matrixban? %d\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3));
 
     //22:
     float arr22[] = {2.3, 3.8, 3.0, 6.5, 8.7};
