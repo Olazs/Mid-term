@@ -136,7 +136,7 @@ int isSmallerWithPointers(int *a, int *b) {
     }
 }
 
-// 19. Negyzetre emeles pointerekkel
+// 19. Négyzetre emelés pointerekkel
 float toSquare(float *num) {
     // Visszaadjuk a szám négyzetét
     return (*num) * (*num);
@@ -245,7 +245,7 @@ int main() { //Tesztek:
     //19:
     float x19=3.5;
     float *px19=&x19;
-    printf("19. A szam negyzete: %.2f\n", toSquare(px19));
+    printf("19. A szám négyzete: %.2f\n", toSquare(px19));
 
     printf("20. Van-e egymás mellett/alatt azonos elem a mátrixban? %s\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3) ? "IGAZ" : "HAMIS");
 
