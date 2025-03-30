@@ -5,7 +5,7 @@
 #include <math.h>
 
 // 1. Függvény, amely visszatér a paraméterként kapott cím értékével
-int getValue(int *ptr) {
+int getValue(const int *ptr) {
     return *ptr;
 }
 
