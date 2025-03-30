@@ -250,10 +250,10 @@ int main() { //Tesztek:
 
     printf("20. Van-e egymás mellett/alatt azonos elem a mátrixban? %s\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3) ? "IGAZ" : "HAMIS");
 
-    printf("21. Hány egymás mellett/alatt azonos elem a mátrixban? %s\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3));
+    printf("21. Hány egymás mellett/alatt azonos elem a mátrixban? %d\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3));
 
     //22:
-    float arr22[] = {1.0, 2.0, 3.0, 4.0, 5.0};
+    float arr22[] = {2.3, 3.8, 3.0, 6.5, 8.7};
     updateArrayWithNeighborAverage(arr22, 5);
     printf("22. Frissített tömb: ");
     for (int i = 0; i < 5; i++) printf("%.2f ", arr22[i]);
