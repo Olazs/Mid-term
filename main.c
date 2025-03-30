@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <tgmath.h>
 #include <time.h>
+#include <math.h>
 
 // 1. Függvény, amely visszatér a paraméterként kapott cím értékével
 int getValue(int *ptr) {
