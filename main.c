@@ -142,7 +142,40 @@ float toSquare(float *num) {
     return (*num) * (*num);
 }
 
-int main() {
+// 20. Logikai függvény: Van-e a mátrixban két egymás mellett/alatt lévő azonos elem?
+int hasAdjacentEqualElements(int **matrix, int N) {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (j < N - 1 && matrix[i][j] == matrix[i][j + 1]) return 1; // Jobbra
+            if (i < N - 1 && matrix[i][j] == matrix[i + 1][j]) return 1; // Lefelé
+        }
+    }
+    return 0;
+}
+
+// 21. Logikai függvény: Megszámolja az azonos szomszédos elemek előfordulását a mátrixban
+int countAdjacentEqualElements(int **matrix, int N) {
+    int count = 0;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (j < N - 1 && matrix[i][j] == matrix[i][j + 1]) count++; // Jobbra
+            if (i < N - 1 && matrix[i][j] == matrix[i + 1][j]) count++; // Lefelé
+        }
+    }
+    return count;
+}
+
+// 22. Tömb elemeinek frissítése a szomszédos elemek átlagára
+void updateArrayWithNeighborAverage(float arr[], int size) {
+    if (size < 3) return;
+    float temp[size];
+    for (int i = 0; i < size; i++) temp[i] = arr[i];
+    for (int i = 1; i < size - 1; i++) {
+        arr[i] = (temp[i - 1] + temp[i + 1]) / 2.0;
+    }
+}
+
+int main() { //Tesztek:
     int x = 10, y = 20, z = 5;
     float a = 5.5; float b = 6.5;
     printf("1. A változó értéke: %d\n", getValue(&x));
@@ -214,6 +247,16 @@ int main() {
     float *px19=&x19;
     printf("19. A szam negyzete: %.2f\n", toSquare(px19));
 
+    printf("20. Van-e egymás mellett/alatt azonos elem a mátrixban? %s\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3) ? "IGAZ" : "HAMIS");
+
+    printf("21. Hány egymás mellett/alatt azonos elem a mátrixban? %s\n", hasAdjacentEqualElements((int*[]){(int[]){1,2,3}, (int[]){4,5,6}, (int[]){7,8,8}}, 3));
+
+    //22:
+    float arr22[] = {1.0, 2.0, 3.0, 4.0, 5.0};
+    updateArrayWithNeighborAverage(arr22, 5);
+    printf("22. Frissített tömb: ");
+    for (int i = 0; i < 5; i++) printf("%.2f ", arr22[i]);
+    printf("\n");
 
 
     return 0;
