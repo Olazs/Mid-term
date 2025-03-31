@@ -175,15 +175,21 @@ void updateArrayWithNeighborAverage(float arr[], int size) {
         arr[i] = (temp[i - 1] + temp[i + 1]) / 2.0;
     }
 }
+// 23. Két kétdimenziós vektor által meghatározott pontok távolságának kiszámítása
+void calculateDistance(float v1[2], float v2[2], float *distance) {
+    *distance = sqrt(pow(v2[0] - v1[0], 2) + pow(v2[1] - v1[1], 2));
+}
 
 int main() { //Tesztek:
     int x = 10, y = 20, z = 5;
     float a = 5.5; float b = 6.5;
     printf("1. A valtozo erteke: %d\n", getValue(&x));
 
+
     printf("2. Swap elott: x = %d, y = %d\n", x, y);
     swap(&x, &y);
     printf("   Swap utan: x = %d, y = %d\n", x, y);
+
 
     printf("3. Rendezes elott: x = %d, y = %d, z = %d\n", x, y, z);
     sortThree(&x, &y, &z);
@@ -259,6 +265,11 @@ int main() { //Tesztek:
     for (int i = 0; i < 5; i++) printf("%.2f ", arr22[i]);
     printf("\n");
 
+    //23:
+    float v1[2] = {1.0, 2.0}, v2[2] = {4.0, 6.0}, distance;
+    calculateDistance(v1, v2, &distance);
+    printf("23. A ket pont tavolsaga: %.2f\n", distance);
 
-    return 100;
+
+    //return 100;
 }
