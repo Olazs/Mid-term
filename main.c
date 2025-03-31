@@ -257,7 +257,7 @@ int main() { //Tesztek:
     int *px18 = &x18, *py18 = &y18;
     printf("18. A kissebb szam: %d\n", isSmallerWithPointers(px18, py18));
 
-    //19:
+    //19-21:
     float x19=3.5;
     float *px19=&x19;
     printf("19. A szam negyzete: %.2f\n", toSquare(px19));
