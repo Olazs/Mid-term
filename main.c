@@ -180,6 +180,14 @@ void calculateDistance(float v1[2], float v2[2], float *distance) {
     *distance = sqrt(pow(v2[0] - v1[0], 2) + pow(v2[1] - v1[1], 2));
 }
 
+//24:
+void leghosszabbNovekvoReszsorozat(float* arr, int n, int* result) {
+    if (n <= 0 || arr == NULL || result == NULL) {
+        *result = 0;
+        return;
+    }
+}
+
 int main() { //Tesztek:
     int x = 10, y = 20, z = 5;
     float a = 5.5; float b = 6.5;
@@ -270,6 +278,14 @@ int main() { //Tesztek:
     calculateDistance(v1, v2, &distance);
     printf("23. A ket pont tavolsaga: %.2f\n", distance);
 
+    //24:
+    float arr24[] = {10.5, 22.3, 9.1, 33.7, 21.2, 50.8, 60.9};
+    int n = sizeof(arr24) / sizeof(arr24[0]);
+    int eredmeny;
+
+    leghosszabbNovekvoReszsorozat(arr24, n, &eredmeny);
+
+    printf("A leghosszabb novekvo reszsorozat hossza: %d\n", eredmeny);
 
     //return 100;
 }
