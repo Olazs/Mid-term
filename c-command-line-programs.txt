@@ -1,0 +1,487 @@
+/* 1. Program that calculates the perimeter of a rectangle based on two sides */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Usage: %s <side1> <side2>\n", argv[0]);
+        return 1;
+    }
+
+    double side1 = atof(argv[1]);
+    double side2 = atof(argv[2]);
+    
+    if (side1 <= 0 || side2 <= 0) {
+        printf("Error: Rectangle sides must be positive numbers.\n");
+        return 1;
+    }
+    
+    double perimeter = 2 * (side1 + side2);
+    printf("The perimeter of the rectangle is: %.2f\n", perimeter);
+    
+    return 0;
+}
+
+/* 2. Program that counts vowels in a given string */
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("Usage: %s <string>\n", argv[0]);
+        return 1;
+    }
+
+    char *str = argv[1];
+    int vowels = 0;
+    
+    for (int i = 0; i < strlen(str); i++) {
+        char c = tolower(str[i]);
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+            c == 'á' || c == 'é' || c == 'í' || c == 'ó' || c == 'ö' || 
+            c == 'ő' || c == 'ú' || c == 'ü' || c == 'ű') {
+            vowels++;
+        }
+    }
+    
+    printf("Number of vowels: %d\n", vowels);
+    
+    return 0;
+}
+
+/* 3. Program that arranges digits to form the largest number */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Comparison function for qsort
+int compare(const void *a, const void *b) {
+    return *(char*)b - *(char*)a;  // Descending order
+}
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        printf("Usage: %s <digit1> <digit2> ... <digitN>\n", argv[0]);
+        return 1;
+    }
+
+    int total_len = 0;
+    for (int i = 1; i < argc; i++) {
+        // Check if arguments are digits
+        if (strlen(argv[i]) != 1 || argv[i][0] < '0' || argv[i][0] > '9') {
+            printf("Error: Arguments must be single digits.\n");
+            return 1;
+        }
+        total_len++;
+    }
+    
+    char digits[total_len + 1];
+    int idx = 0;
+    
+    for (int i = 1; i < argc; i++) {
+        digits[idx++] = argv[i][0];
+    }
+    digits[idx] = '\0';
+    
+    // Sort in descending order to get largest number
+    qsort(digits, strlen(digits), sizeof(char), compare);
+    
+    printf("Largest number: %s\n", digits);
+    
+    return 0;
+}
+
+/* 4. Program that sorts characters in alphabetical order */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        printf("Usage: %s <char1> <char2> ... <charN>\n", argv[0]);
+        return 1;
+    }
+
+    int total_len = 0;
+    for (int i = 1; i < argc; i++) {
+        if (strlen(argv[i]) != 1) {
+            printf("Error: Arguments must be single characters.\n");
+            return 1;
+        }
+        total_len++;
+    }
+    
+    char chars[total_len + 1];
+    int idx = 0;
+    
+    for (int i = 1; i < argc; i++) {
+        chars[idx++] = argv[i][0];
+    }
+    chars[idx] = '\0';
+    
+    // Sort in ascending order (alphabetical)
+    qsort(chars, strlen(chars), sizeof(char), 
+          (int(*)(const void*, const void*))strcmp);
+    
+    printf("Sorted characters: %s\n", chars);
+    
+    return 0;
+}
+
+/* 5. Program that prints a character a given number of times */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Usage: %s <character> <number>\n", argv[0]);
+        return 1;
+    }
+
+    if (strlen(argv[1]) != 1) {
+        printf("Error: First argument must be a single character.\n");
+        return 1;
+    }
+    
+    char character = argv[1][0];
+    int count = atoi(argv[2]);
+    
+    if (count < 0) {
+        printf("Error: Second argument must be a non-negative integer.\n");
+        return 1;
+    }
+    
+    for (int i = 0; i < count; i++) {
+        printf("%c", character);
+    }
+    printf("\n");
+    
+    return 0;
+}
+
+/* 6. Program that prints the character at a given position in a string */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Usage: %s <string> <position>\n", argv[0]);
+        return 1;
+    }
+
+    char *str = argv[1];
+    int position = atoi(argv[2]);
+    
+    if (position < 1 || position > strlen(str)) {
+        printf("Error: Position must be between 1 and %lu.\n", strlen(str));
+        return 1;
+    }
+    
+    // Adjust position for 0-based indexing
+    printf("Character at position %d: %c\n", position, str[position-1]);
+    
+    return 0;
+}
+
+/* 7. Program that fills a file with random numbers between 0 and 10 */
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printf("Usage: %s <filename>\n", argv[0]);
+        return 1;
+    }
+
+    char *filename = argv[1];
+    FILE *file = fopen(filename, "w");
+    
+    if (file == NULL) {
+        printf("Error: Could not open file %s for writing.\n", filename);
+        return 1;
+    }
+    
+    // Seed random number generator
+    srand(time(NULL));
+    
+    // Generate 100 random numbers between 0 and 10
+    const int count = 100;
+    for (int i = 0; i < count; i++) {
+        float random_num = ((float)rand() / RAND_MAX) * 10.0;
+        fprintf(file, "%.2f\n", random_num);
+    }
+    
+    fclose(file);
+    printf("Successfully filled %s with %d random numbers between 0 and 10.\n", 
+           filename, count);
+    
+    return 0;
+}
+
+/* 8. Program that swaps the contents of two files */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Usage: %s <file1> <file2>\n", argv[0]);
+        return 1;
+    }
+
+    char *file1_name = argv[1];
+    char *file2_name = argv[2];
+    
+    // Check if files exist and can be opened
+    FILE *file1 = fopen(file1_name, "r");
+    if (file1 == NULL) {
+        printf("Error: Could not open file %s for reading.\n", file1_name);
+        return 1;
+    }
+    
+    FILE *file2 = fopen(file2_name, "r");
+    if (file2 == NULL) {
+        fclose(file1);
+        printf("Error: Could not open file %s for reading.\n", file2_name);
+        return 1;
+    }
+    
+    // Create temporary files
+    char temp1_name[L_tmpnam];
+    char temp2_name[L_tmpnam];
+    tmpnam(temp1_name);
+    tmpnam(temp2_name);
+    
+    FILE *temp1 = fopen(temp1_name, "w");
+    FILE *temp2 = fopen(temp2_name, "w");
+    
+    if (temp1 == NULL || temp2 == NULL) {
+        fclose(file1);
+        fclose(file2);
+        if (temp1) fclose(temp1);
+        if (temp2) fclose(temp2);
+        printf("Error: Could not create temporary files.\n");
+        return 1;
+    }
+    
+    // Copy file1 to temp1
+    int c;
+    while ((c = fgetc(file1)) != EOF) {
+        fputc(c, temp1);
+    }
+    
+    // Copy file2 to temp2
+    while ((c = fgetc(file2)) != EOF) {
+        fputc(c, temp2);
+    }
+    
+    // Close all files
+    fclose(file1);
+    fclose(file2);
+    fclose(temp1);
+    fclose(temp2);
+    
+    // Now reopen for writing and copying content
+    file1 = fopen(file1_name, "w");
+    file2 = fopen(file2_name, "w");
+    temp1 = fopen(temp1_name, "r");
+    temp2 = fopen(temp2_name, "r");
+    
+    if (file1 == NULL || file2 == NULL || temp1 == NULL || temp2 == NULL) {
+        printf("Error: Failed to reopen files for swapping.\n");
+        return 1;
+    }
+    
+    // Copy temp2 (original file2) to file1
+    while ((c = fgetc(temp2)) != EOF) {
+        fputc(c, file1);
+    }
+    
+    // Copy temp1 (original file1) to file2
+    while ((c = fgetc(temp1)) != EOF) {
+        fputc(c, file2);
+    }
+    
+    // Close and delete temporary files
+    fclose(file1);
+    fclose(file2);
+    fclose(temp1);
+    fclose(temp2);
+    remove(temp1_name);
+    remove(temp2_name);
+    
+    printf("Successfully swapped contents of %s and %s.\n", file1_name, file2_name);
+    
+    return 0;
+}
+
+/* 9. Program that counts occurrences of a string in a file */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Usage: %s <filename> <string>\n", argv[0]);
+        return 1;
+    }
+
+    char *filename = argv[1];
+    char *search_str = argv[2];
+    
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Error: Could not open file %s for reading.\n", filename);
+        return 1;
+    }
+    
+    int count = 0;
+    int search_len = strlen(search_str);
+    char *buffer = NULL;
+    size_t buffer_size = 0;
+    
+    // Read the entire file into memory
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    
+    buffer = (char*)malloc(file_size + 1);
+    if (buffer == NULL) {
+        fclose(file);
+        printf("Error: Memory allocation failed.\n");
+        return 1;
+    }
+    
+    fread(buffer, 1, file_size, file);
+    buffer[file_size] = '\0';
+    
+    // Count occurrences
+    char *pos = buffer;
+    while ((pos = strstr(pos, search_str)) != NULL) {
+        count++;
+        pos += search_len;
+    }
+    
+    printf("The string \"%s\" appears %d times in the file %s.\n", 
+           search_str, count, filename);
+    
+    free(buffer);
+    fclose(file);
+    
+    return 0;
+}
+
+/* 10. Program that counts common words in two files */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_WORDS 10000
+#define MAX_WORD_LEN 100
+
+// Function to convert a string to lowercase
+void to_lower(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower(str[i]);
+    }
+}
+
+// Function to check if a word is already in the array
+int contains_word(char words[][MAX_WORD_LEN], int count, char *word) {
+    for (int i = 0; i < count; i++) {
+        if (strcmp(words[i], word) == 0) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Usage: %s <file1> <file2>\n", argv[0]);
+        return 1;
+    }
+
+    char *file1_name = argv[1];
+    char *file2_name = argv[2];
+    
+    FILE *file1 = fopen(file1_name, "r");
+    if (file1 == NULL) {
+        printf("Error: Could not open file %s for reading.\n", file1_name);
+        return 1;
+    }
+    
+    FILE *file2 = fopen(file2_name, "r");
+    if (file2 == NULL) {
+        fclose(file1);
+        printf("Error: Could not open file %s for reading.\n", file2_name);
+        return 1;
+    }
+    
+    // Arrays to store words
+    char words1[MAX_WORDS][MAX_WORD_LEN];
+    char words2[MAX_WORDS][MAX_WORD_LEN];
+    char common[MAX_WORDS][MAX_WORD_LEN];
+    int count1 = 0, count2 = 0, common_count = 0;
+    
+    // Read words from file1
+    char word[MAX_WORD_LEN];
+    while (fscanf(file1, "%99s", word) == 1 && count1 < MAX_WORDS) {
+        to_lower(word);
+        
+        // Remove punctuation at the end of the word
+        int len = strlen(word);
+        while (len > 0 && ispunct(word[len-1])) {
+            word[--len] = '\0';
+        }
+        
+        if (len > 0 && !contains_word(words1, count1, word)) {
+            strcpy(words1[count1++], word);
+        }
+    }
+    
+    // Read words from file2
+    while (fscanf(file2, "%99s", word) == 1 && count2 < MAX_WORDS) {
+        to_lower(word);
+        
+        // Remove punctuation at the end of the word
+        int len = strlen(word);
+        while (len > 0 && ispunct(word[len-1])) {
+            word[--len] = '\0';
+        }
+        
+        if (len > 0 && !contains_word(words2, count2, word)) {
+            strcpy(words2[count2++], word);
+        }
+    }
+    
+    // Find common words
+    for (int i = 0; i < count1; i++) {
+        if (contains_word(words2, count2, words1[i]) && 
+            !contains_word(common, common_count, words1[i])) {
+            strcpy(common[common_count++], words1[i]);
+        }
+    }
+    
+    printf("Number of common words in %s and %s: %d\n", 
+           file1_name, file2_name, common_count);
+    
+    printf("Common words: ");
+    for (int i = 0; i < common_count; i++) {
+        printf("%s", common[i]);
+        if (i < common_count - 1) {
+            printf(", ");
+        }
+    }
+    printf("\n");
+    
+    fclose(file1);
+    fclose(file2);
+    
+    return 0;
+}

@@ -1,0 +1,532 @@
+/* 1. Structure for storing personal data and filling it with data */
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[50];
+    int age;
+    char address[100];
+    char phone[20];
+    char email[50];
+};
+
+int main() {
+    struct Person myself;
+    
+    strcpy(myself.name, "John Doe");
+    myself.age = 30;
+    strcpy(myself.address, "123 Main Street, Budapest, Hungary");
+    strcpy(myself.phone, "+36-1-234-5678");
+    strcpy(myself.email, "john.doe@example.com");
+    
+    printf("Personal Information:\n");
+    printf("Name: %s\n", myself.name);
+    printf("Age: %d\n", myself.age);
+    printf("Address: %s\n", myself.address);
+    printf("Phone: %s\n", myself.phone);
+    printf("Email: %s\n", myself.email);
+    
+    return 0;
+}
+
+/* 2. Structure vector for storing zoo data and filling it with animal data */
+#include <stdio.h>
+#include <string.h>
+
+struct Animal {
+    char name[50];
+    char species[50];
+    int age;
+    float weight;
+    char habitat[50];
+};
+
+int main() {
+    struct Animal zoo[5]; // Array of 5 animals
+    
+    // Animal 1
+    strcpy(zoo[0].name, "Leo");
+    strcpy(zoo[0].species, "Lion");
+    zoo[0].age = 8;
+    zoo[0].weight = 190.5;
+    strcpy(zoo[0].habitat, "Savanna");
+    
+    // Animal 2
+    strcpy(zoo[1].name, "Dumbo");
+    strcpy(zoo[1].species, "Elephant");
+    zoo[1].age = 15;
+    zoo[1].weight = 5200.0;
+    strcpy(zoo[1].habitat, "Jungle");
+    
+    // Animal 3
+    strcpy(zoo[2].name, "Charlie");
+    strcpy(zoo[2].species, "Chimpanzee");
+    zoo[2].age = 12;
+    zoo[2].weight = 70.3;
+    strcpy(zoo[2].habitat, "Rainforest");
+    
+    // Display zoo data
+    printf("Zoo Animals:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("\nAnimal %d:\n", i+1);
+        printf("Name: %s\n", zoo[i].name);
+        printf("Species: %s\n", zoo[i].species);
+        printf("Age: %d years\n", zoo[i].age);
+        printf("Weight: %.1f kg\n", zoo[i].weight);
+        printf("Habitat: %s\n", zoo[i].habitat);
+    }
+    
+    return 0;
+}
+
+/* 3. Structure for storing complex numbers */
+#include <stdio.h>
+
+struct Complex {
+    double real;
+    double imaginary;
+};
+
+int main() {
+    struct Complex num1 = {3.0, 4.0};
+    struct Complex num2 = {1.5, -2.7};
+    
+    printf("Complex Number 1: %.1f + %.1fi\n", num1.real, num1.imaginary);
+    printf("Complex Number 2: %.1f + %.1fi\n", num2.real, num2.imaginary);
+    
+    return 0;
+}
+
+/* 4. Structure vector for storing points in 3D space */
+#include <stdio.h>
+
+struct Point3D {
+    double x;
+    double y;
+    double z;
+};
+
+int main() {
+    struct Point3D points[5]; // Array of 5 3D points
+    
+    // Initialize some points
+    points[0] = (struct Point3D){1.0, 2.0, 3.0};
+    points[1] = (struct Point3D){4.5, -2.3, 8.1};
+    points[2] = (struct Point3D){0.0, 0.0, 0.0};
+    
+    // Display points
+    printf("3D Points:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("Point %d: (%.1f, %.1f, %.1f)\n", 
+               i+1, points[i].x, points[i].y, points[i].z);
+    }
+    
+    return 0;
+}
+
+/* 5. Structure for storing a line in 3D space using nested structures */
+#include <stdio.h>
+
+struct Point3D {
+    double x;
+    double y;
+    double z;
+};
+
+struct Line3D {
+    struct Point3D start;
+    struct Point3D end;
+};
+
+int main() {
+    struct Line3D line;
+    
+    // Initialize line with two points
+    line.start = (struct Point3D){1.0, 2.0, 3.0};
+    line.end = (struct Point3D){4.0, 6.0, 8.0};
+    
+    // Display line information
+    printf("3D Line:\n");
+    printf("Start point: (%.1f, %.1f, %.1f)\n", 
+           line.start.x, line.start.y, line.start.z);
+    printf("End point: (%.1f, %.1f, %.1f)\n", 
+           line.end.x, line.end.y, line.end.z);
+    
+    return 0;
+}
+
+/* 6. Personal data structure with a procedure for filling it */
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[50];
+    int age;
+    char address[100];
+    char phone[20];
+    char email[50];
+};
+
+// Procedure to fill the person structure
+void fillPersonData(struct Person *p) {
+    strcpy(p->name, "John Doe");
+    p->age = 30;
+    strcpy(p->address, "123 Main Street, Budapest, Hungary");
+    strcpy(p->phone, "+36-1-234-5678");
+    strcpy(p->email, "john.doe@example.com");
+}
+
+int main() {
+    struct Person myself;
+    
+    // Call procedure to fill data
+    fillPersonData(&myself);
+    
+    printf("Personal Information:\n");
+    printf("Name: %s\n", myself.name);
+    printf("Age: %d\n", myself.age);
+    printf("Address: %s\n", myself.address);
+    printf("Phone: %s\n", myself.phone);
+    printf("Email: %s\n", myself.email);
+    
+    return 0;
+}
+
+/* 7. Zoo data structure with a procedure for filling it */
+#include <stdio.h>
+#include <string.h>
+
+struct Animal {
+    char name[50];
+    char species[50];
+    int age;
+    float weight;
+    char habitat[50];
+};
+
+// Procedure to fill the zoo data
+void fillZooData(struct Animal zoo[], int size) {
+    if (size >= 1) {
+        strcpy(zoo[0].name, "Leo");
+        strcpy(zoo[0].species, "Lion");
+        zoo[0].age = 8;
+        zoo[0].weight = 190.5;
+        strcpy(zoo[0].habitat, "Savanna");
+    }
+    
+    if (size >= 2) {
+        strcpy(zoo[1].name, "Dumbo");
+        strcpy(zoo[1].species, "Elephant");
+        zoo[1].age = 15;
+        zoo[1].weight = 5200.0;
+        strcpy(zoo[1].habitat, "Jungle");
+    }
+    
+    if (size >= 3) {
+        strcpy(zoo[2].name, "Charlie");
+        strcpy(zoo[2].species, "Chimpanzee");
+        zoo[2].age = 12;
+        zoo[2].weight = 70.3;
+        strcpy(zoo[2].habitat, "Rainforest");
+    }
+}
+
+int main() {
+    struct Animal zoo[5]; // Array of 5 animals
+    
+    // Call procedure to fill data
+    fillZooData(zoo, 3);
+    
+    // Display zoo data
+    printf("Zoo Animals:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("\nAnimal %d:\n", i+1);
+        printf("Name: %s\n", zoo[i].name);
+        printf("Species: %s\n", zoo[i].species);
+        printf("Age: %d years\n", zoo[i].age);
+        printf("Weight: %.1f kg\n", zoo[i].weight);
+        printf("Habitat: %s\n", zoo[i].habitat);
+    }
+    
+    return 0;
+}
+
+/* 8. Function that returns a structure (complex number addition) */
+#include <stdio.h>
+
+struct Complex {
+    double real;
+    double imaginary;
+};
+
+// Function that adds two complex numbers and returns a complex number
+struct Complex addComplex(struct Complex a, struct Complex b) {
+    struct Complex result;
+    result.real = a.real + b.real;
+    result.imaginary = a.imaginary + b.imaginary;
+    return result;
+}
+
+int main() {
+    struct Complex num1 = {3.0, 4.0};
+    struct Complex num2 = {1.5, -2.7};
+    
+    struct Complex sum = addComplex(num1, num2);
+    
+    printf("Complex Number 1: %.1f + %.1fi\n", num1.real, num1.imaginary);
+    printf("Complex Number 2: %.1f + %.1fi\n", num2.real, num2.imaginary);
+    printf("Sum: %.1f + %.1fi\n", sum.real, sum.imaginary);
+    
+    return 0;
+}
+
+/* 9. Structure for storing 8-bit binary number and its decimal value */
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+struct BinaryNumber {
+    int binary[8]; // 8 bits (0 or 1)
+    int decimal;   // decimal value
+};
+
+// Function to calculate decimal value from binary
+void calculateDecimal(struct BinaryNumber *num) {
+    num->decimal = 0;
+    for (int i = 0; i < 8; i++) {
+        if (num->binary[i] == 1) {
+            num->decimal += pow(2, 7-i); // Binary to decimal conversion
+        }
+    }
+}
+
+int main() {
+    struct BinaryNumber numbers[10]; // Array of 10 binary numbers
+    
+    printf("Enter binary numbers (8 bits, one by one):\n");
+    
+    // Loop through the array
+    for (int i = 0; i < 10; i++) {
+        printf("Binary number %d:\n", i+1);
+        
+        // Input each bit
+        for (int j = 0; j < 8; j++) {
+            int bit;
+            do {
+                printf("Enter bit %d (0 or 1): ", j+1);
+                scanf("%d", &bit);
+            } while (bit != 0 && bit != 1); // Validate input
+            
+            numbers[i].binary[j] = bit;
+        }
+        
+        // Calculate and store decimal value
+        calculateDecimal(&numbers[i]);
+        
+        // Display the input binary number and its decimal value
+        printf("Binary: ");
+        for (int j = 0; j < 8; j++) {
+            printf("%d", numbers[i].binary[j]);
+        }
+        printf("\nDecimal: %d\n\n", numbers[i].decimal);
+        
+        // Ask if user wants to continue
+        if (i < 9) {
+            printf("Continue with next number? (1 for yes, 0 for no): ");
+            int continue_input;
+            scanf("%d", &continue_input);
+            if (!continue_input) {
+                break;
+            }
+        }
+    }
+    
+    return 0;
+}
+
+/* 10. Structure for storing two points and the distance between them */
+#include <stdio.h>
+#include <math.h>
+
+// 1D point
+struct Point1D {
+    double x;
+};
+
+// 2D point
+struct Point2D {
+    double x;
+    double y;
+};
+
+// 3D point
+struct Point3D {
+    double x;
+    double y;
+    double z;
+};
+
+// 1D distance structure
+struct Distance1D {
+    struct Point1D point1;
+    struct Point1D point2;
+    double distance;
+};
+
+// 2D distance structure
+struct Distance2D {
+    struct Point2D point1;
+    struct Point2D point2;
+    double distance;
+};
+
+// 3D distance structure
+struct Distance3D {
+    struct Point3D point1;
+    struct Point3D point2;
+    double distance;
+};
+
+// Function to calculate distance in 1D
+void calculateDistance1D(struct Distance1D *dist) {
+    dist->distance = fabs(dist->point2.x - dist->point1.x);
+}
+
+// Function to calculate distance in 2D
+void calculateDistance2D(struct Distance2D *dist) {
+    double dx = dist->point2.x - dist->point1.x;
+    double dy = dist->point2.y - dist->point1.y;
+    dist->distance = sqrt(dx*dx + dy*dy);
+}
+
+// Function to calculate distance in 3D
+void calculateDistance3D(struct Distance3D *dist) {
+    double dx = dist->point2.x - dist->point1.x;
+    double dy = dist->point2.y - dist->point1.y;
+    double dz = dist->point2.z - dist->point1.z;
+    dist->distance = sqrt(dx*dx + dy*dy + dz*dz);
+}
+
+int main() {
+    // 1D distance example
+    struct Distance1D dist1D = {
+        .point1 = {1.0},
+        .point2 = {5.0}
+    };
+    calculateDistance1D(&dist1D);
+    
+    // 2D distance example
+    struct Distance2D dist2D = {
+        .point1 = {1.0, 2.0},
+        .point2 = {4.0, 6.0}
+    };
+    calculateDistance2D(&dist2D);
+    
+    // 3D distance example
+    struct Distance3D dist3D = {
+        .point1 = {1.0, 2.0, 3.0},
+        .point2 = {4.0, 6.0, 8.0}
+    };
+    calculateDistance3D(&dist3D);
+    
+    // Display results
+    printf("1D Distance: %.2f\n", dist1D.distance);
+    printf("2D Distance: %.2f\n", dist2D.distance);
+    printf("3D Distance: %.2f\n", dist3D.distance);
+    
+    return 0;
+}
+
+/* 11. Structure for storing triangle vertices and calculating average distance from origin */
+#include <stdio.h>
+#include <math.h>
+
+// Structure for a 3D point
+struct Point3D {
+    double x;
+    double y;
+    double z;
+};
+
+// Structure for a triangle
+struct Triangle {
+    struct Point3D vertex1;
+    struct Point3D vertex2;
+    struct Point3D vertex3;
+};
+
+// Calculate distance from origin to a point
+double distanceFromOrigin(struct Point3D point) {
+    return sqrt(point.x*point.x + point.y*point.y + point.z*point.z);
+}
+
+// Calculate average distance of triangle vertices from origin
+double averageDistanceFromOrigin(struct Triangle triangle) {
+    double dist1 = distanceFromOrigin(triangle.vertex1);
+    double dist2 = distanceFromOrigin(triangle.vertex2);
+    double dist3 = distanceFromOrigin(triangle.vertex3);
+    
+    return (dist1 + dist2 + dist3) / 3.0;
+}
+
+// Alternative implementation with nested structure
+struct TriangleNested {
+    struct {
+        struct Point3D vertices[3];
+    } points;
+};
+
+// Calculate average distance for nested structure
+double averageDistanceFromOriginNested(struct TriangleNested triangle) {
+    double total = 0.0;
+    
+    for (int i = 0; i < 3; i++) {
+        total += distanceFromOrigin(triangle.points.vertices[i]);
+    }
+    
+    return total / 3.0;
+}
+
+int main() {
+    // Create a triangle
+    struct Triangle triangle = {
+        .vertex1 = {1.0, 0.0, 0.0},
+        .vertex2 = {0.0, 2.0, 0.0},
+        .vertex3 = {0.0, 0.0, 3.0}
+    };
+    
+    // Calculate average distance
+    double avgDistance = averageDistanceFromOrigin(triangle);
+    
+    printf("Triangle vertices:\n");
+    printf("Vertex 1: (%.1f, %.1f, %.1f)\n", 
+           triangle.vertex1.x, triangle.vertex1.y, triangle.vertex1.z);
+    printf("Vertex 2: (%.1f, %.1f, %.1f)\n", 
+           triangle.vertex2.x, triangle.vertex2.y, triangle.vertex2.z);
+    printf("Vertex 3: (%.1f, %.1f, %.1f)\n", 
+           triangle.vertex3.x, triangle.vertex3.y, triangle.vertex3.z);
+    printf("Average distance from origin: %.2f\n", avgDistance);
+    
+    // Using nested structure
+    struct TriangleNested triangleNested = {
+        .points.vertices = {
+            {1.0, 0.0, 0.0},
+            {0.0, 2.0, 0.0},
+            {0.0, 0.0, 3.0}
+        }
+    };
+    
+    double avgDistanceNested = averageDistanceFromOriginNested(triangleNested);
+    
+    printf("\nUsing nested structure:\n");
+    printf("Triangle vertices:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("Vertex %d: (%.1f, %.1f, %.1f)\n", i+1,
+               triangleNested.points.vertices[i].x,
+               triangleNested.points.vertices[i].y,
+               triangleNested.points.vertices[i].z);
+    }
+    printf("Average distance from origin: %.2f\n", avgDistanceNested);
+    
+    return 0;
+}
